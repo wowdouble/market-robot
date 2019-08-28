@@ -1,0 +1,46 @@
+server:
+  servlet:
+    context-path: /
+  port: 8085
+application:
+  name: market
+logging:
+  level:
+    com.example: info
+  file:
+    log/market.log
+market:
+  exchanges:
+#交易所
+    wbfex-crtusdt:
+      uris:
+        uriCreateOrder: https://openapi.wbfex.com/open/api/create_order
+        uriCancelOrder: https://openapi.wbfex.com/open/api/cancel_order
+      symbol: CRTUSDT
+#密钥
+      sellpriKey: ea02d4edec06282dad2b5f66382cbced
+      sellpubKey: f849b7a8d6261791b31748514f553c85
+      buypriKey: 806683e5e7eda84a5fa7d939c1a1ab98
+      buypubKey: ce2ba945f98f55d76383c0d3673ad46d
+#等待时间
+      waitTimes: 1900
+#价格基础价
+      sellBasePrice: 0.07139
+      buyBasePrice: 0.07
+#价格浮动
+      buyfluctuate: 10
+      sellfluctuate: 6
+#价格精度
+      priceScale: 6
+#数量基数
+      buyamount: 120
+      sellAmount: 285
+#数量浮动
+      amountFluctuate: 50
+#买单占比
+      buyOrderRatio: 4
+      buyType: BUY
+      sellType: SELL
+      stopBuy: false
+      stopSell: false
+
