@@ -61,21 +61,26 @@ public class Service {
         Random random = new Random();
         int randType = random.nextInt(10);
         if (randType>=exchange.getBuyOrderRatio()){
-            orderVo.setSecret_key(exchange.getBuypriKey());
-            orderVo.setApi_key(exchange.getBuypubKey());
             orderVo.setSide(exchange.getBuyType());
             String buyprice = Util.random(exchange.getBuyBasePrice(),exchange.getBuyfluctuate()).substring(0,priceScale);
             String buyamount =  Util.random(exchange.getBuyamount(),exchange.getAmountFluctuate());
             orderVo.setAmount(buyamount);
             orderVo.setPrice(buyprice);
         }else {
-            orderVo.setSecret_key(exchange.getSellpriKey());
-            orderVo.setApi_key(exchange.getSellpubKey());
             orderVo.setSide(exchange.getSellType());
             String sellprice = Util.random(exchange.getSellBasePrice(),exchange.getSellfluctuate()).substring(0,priceScale);
             String sellamount = Util.random(exchange.getSellAmount(),exchange.getAmountFluctuate());
             orderVo.setAmount(sellamount);
             orderVo.setPrice(sellprice);
+        }
+        Random random2 = new Random();
+        int rand = random2.nextInt(10);
+        if(rand>=4&&orderVo.getSide().equals(exchange.getBuyType())){
+            orderVo.setSecret_key(exchange.getBuypriKey());
+            orderVo.setApi_key(exchange.getBuypubKey());
+        }else {
+            orderVo.setSecret_key(exchange.getSellpriKey());
+            orderVo.setApi_key(exchange.getSellpubKey());
         }
         return orderVo;
     }
